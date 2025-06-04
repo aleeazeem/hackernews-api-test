@@ -11,7 +11,7 @@ Automated tests for the Hacker news api tests
 ## Run Tests In Local System Terminal
 - Clone the project in local system
 ```bash
-git clone https://github.com/aleeazeem/Weather-Test.git <project>
+https://github.com/aleeazeem/hackernews-api-test.git
 ```
 - Install all required dependencies 
 ```bash
@@ -19,35 +19,33 @@ npm install
 ```
 - Run tests using command
 ```bash
-npm run test
+npm test
 ```
-OR
 ```bash
 npx jest
 ```
 - If you want to print logs during execution then run the command with arguments DEBUG=true
 ```bash
-DEBUG=true npm run jest   
+DEBUG=true npm test  
 ```
-OR
 ```bash
 DEBUG=true npx jest
 ```
 
 ## Run Tests In Docker
-If you want to run tests in dockers then you don't need to install node. Only thing you need to install 
-[Dockers](https://docs.docker.com/get-docker/) and before starting it make sure docker is up and running. 
+If you want to run tests in dockers then installation of node is not required becuase dockerfile is using node 18 image as a base. 
+Only thing you need to install [Dockers](https://docs.docker.com/get-docker/) and before starting it make sure docker is up and running.
+
 The whole code is written in [Dockerfile](Dockerfile) for execution. 
 - Build an Image
 ```bash
-docker build -t weather-test-image --build-arg .
+docker build -t hackernews-api-test .
 ```
-
-- Run container with with name space weather-test-container.
+- Run container with created docker image
 ```bash
-docker run --shm-size 2G --name weather-test-container weather-test-image
+docker run --rm hackernews-api-test
 ```
-- Optional: if you want to export app_id then run container with env varaible of app_id
+- Run the container with logs 
 ```bash
-docker run --shm-size 2G -e app_id_token=${app_id} -name weather-test-container weather-test-image
+docker run --rm -e DEBUG=true hackernews-api-test
 ```
